@@ -2,9 +2,3 @@
 /.idea
 composer.phar
 /nbproject
-C:/xampp/htdocs/CodePress/packages/codecategory/vendor
-C:/xampp/htdocs/CodePress/packages/codecategory/.gitignore
-C:/xampp/htdocs/CodePress/packages/codecategory/composer.json
-C:/xampp/htdocs/CodePress/packages/codecategory/composer.lock
-C:/xampp/htdocs/CodePress/packages/codecategory/phpunit.xml
-C:/xampp/htdocs/CodePress/packages/codecategory/index.php
