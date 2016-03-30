@@ -1,0 +1,7 @@
+Nessa fase, você deverá fazer a migração de seu projeto para o Laravel 5.2, 
+caso ainda esteja trabalhando com o Laravel 5.1
+
+Também você deverá implementar todos os testes do pacote CodeCategory e ainda finalizar o CRUD 
+com os testes de aceitação passando.
+
+Realize o mesmo procedimento (Testes e CRUD), para o pacote CodeTags.
