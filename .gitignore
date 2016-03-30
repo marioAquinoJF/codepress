@@ -1,0 +1,10 @@
+/vendor
+/node_modules
+/public/storage
+/packages/codecategory/.git
+/packages/codecategory/vendor
+/packages/codetags/.git
+/packages/codetags/vendor
+Homestead.yaml
+Homestead.json
+.env
