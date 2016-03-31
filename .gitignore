@@ -2,10 +2,13 @@
 /node_modules
 /nbproject
 /public/storage
+<<<<<<< HEAD
 /packages/codecategory/.git
 /packages/codecategory/vendor
 /packages/codetags/.git
 /packages/codetags/vendor
 Homestead.yaml
 Homestead.json
+=======
+>>>>>>> packages/codecategories/master
 .env

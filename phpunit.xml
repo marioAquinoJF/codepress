@@ -1,11 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<<<<<<< HEAD
 <phpunit backupGlobals="false"
          backupStaticAttributes="false"
          bootstrap="bootstrap/autoload.php"
+=======
+
+<phpunit backupGlobals = "false"
+         backupStaticAttributes="false"
+         bootstrap="vendor/autoload.php"
+>>>>>>> packages/codecategories/master
          colors="true"
          convertErrorsToExceptions="true"
          convertNoticesToExceptions="true"
          convertWarningsToExceptions="true"
+<<<<<<< HEAD
          processIsolation="false"
          stopOnFailure="false">
     <testsuites>
@@ -24,4 +32,16 @@
         <env name="SESSION_DRIVER" value="array"/>
         <env name="QUEUE_DRIVER" value="sync"/>
     </php>
+=======
+         processIsolation="true"
+         stopOnFailure="false"
+         syntaxCheck="false"
+>
+    <testsuites>        
+        <testsuite name="Package Test Suite">
+            <directory suffix=".php">./tests/</directory>
+        </testsuite>
+    </testsuites>
+    
+>>>>>>> packages/codecategories/master
 </phpunit>
