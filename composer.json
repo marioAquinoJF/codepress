@@ -23,7 +23,7 @@
         ],
         "psr-4": {
             "CodePress\\": "app/",
-            "CodePress\\CodeCategory\\": "packages/codecategory/src/CodeCategory",
+            "CodePress\\CodeCategory\\": "packages/codecategories/src/CodeCategory",
             "CodePress\\CodeTag\\": "packages/codetags/src/CodeTag"
         }
     },

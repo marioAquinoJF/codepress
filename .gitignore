@@ -1,5 +1,6 @@
 /vendor
 /node_modules
+/nbproject
 /public/storage
 /packages/codecategory/.git
 /packages/codecategory/vendor
