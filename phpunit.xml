@@ -1,38 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<<<<<<< HEAD
-<phpunit backupGlobals="false"
-         backupStaticAttributes="false"
-         bootstrap="bootstrap/autoload.php"
-=======
 
 <phpunit backupGlobals = "false"
          backupStaticAttributes="false"
          bootstrap="vendor/autoload.php"
->>>>>>> packages/codecategories/master
          colors="true"
          convertErrorsToExceptions="true"
          convertNoticesToExceptions="true"
          convertWarningsToExceptions="true"
-<<<<<<< HEAD
-         processIsolation="false"
-         stopOnFailure="false">
-    <testsuites>
-        <testsuite name="Application Test Suite">
-            <directory>./tests/</directory>
-        </testsuite>
-    </testsuites>
-    <filter>
-        <whitelist>
-            <directory suffix=".php">app/</directory>
-        </whitelist>
-    </filter>
-    <php>
-        <env name="APP_ENV" value="testing"/>
-        <env name="CACHE_DRIVER" value="array"/>
-        <env name="SESSION_DRIVER" value="array"/>
-        <env name="QUEUE_DRIVER" value="sync"/>
-    </php>
-=======
          processIsolation="true"
          stopOnFailure="false"
          syntaxCheck="false"
@@ -43,5 +17,4 @@
         </testsuite>
     </testsuites>
     
->>>>>>> packages/codecategories/master
 </phpunit>
