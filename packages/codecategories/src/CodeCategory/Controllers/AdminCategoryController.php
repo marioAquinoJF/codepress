@@ -2,70 +2,70 @@
 
 namespace CodePress\CodeCategory\Controllers;
 
-use CodePress\CodeCategory\Models\Category;
+use CodePress\CodeCategory\Repositories\CategoryRepository;
 use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Http\Request;
 
 class AdminCategoryController extends Controller
 {
 
-    private $category;
+    private $repository;
     private $responseFactory;
 
-    public function __construct(ResponseFactory $responseFactory, Category $category)
+    public function __construct(ResponseFactory $responseFactory, CategoryRepository $repository)
     {
         $this->responseFactory = $responseFactory;
-        $this->category = $category;
+        $this->repository = $repository;
     }
 
     public function index()
     {
-        $categories = $this->category->all();
+        $categories = $this->repository->all();
         return $this->responseFactory->view('codecategory::index', compact('categories'));
     }
 
     public function create()
-    {        
-        $categories = $this->category->all()->lists('name', 'id');
+    {
+        $categories = $this->repository->all()->lists('name', 'id');
         return $this->responseFactory->view('codecategory::create', compact('categories'));
     }
 
     public function store(Request $request)
     {
         $data = array_key_exists('active', $request->all()) ? $request->all() : array_merge($request->all(), ['active' => 'off']);
-        $this->category->create($data);
+        $this->repository->create($data);
         return redirect()->route('admin.categories.index');
     }
 
     public function edit($id)
     {
-        $category = $this->category->find($id);
-        $categories = $this->category->all()->lists('name', 'id');
+        $category = $this->repository->find($id);
+        $categories = $this->repository->all()->lists('name', 'id');
         return $this->responseFactory->view('codecategory::edit', compact('category', 'categories'));
     }
 
     public function update($id, Request $request)
     {
         $data = array_key_exists('active', $request->all()) ? $request->all() : array_merge($request->all(), ['active' => 'off']);
-        $category = $this->category->find($id)->update($data);
+        $category = $this->repository->update($data, $id);
         return redirect()->route('admin.categories.show', ['id' => $id]);
     }
 
     public function show($id)
     {
-        $category = $this->category->find($id);
+        $category = $this->repository->find($id);
         return $this->responseFactory->view('codecategory::show', compact('category'));
     }
 
     public function delete($id)
     {
-        $category = $this->category->find($id);
+        $category = $this->repository->find($id);
         return $this->responseFactory->view('codecategory::delete', compact('category'));
     }
 
     public function destroy($id)
     {
-        $this->category->destroy($id);
+        $this->repository->delete($id);
         return redirect()->route('admin.categories.index');
     }
 

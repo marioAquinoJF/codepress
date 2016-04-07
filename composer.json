@@ -25,7 +25,8 @@
         "psr-4": {
             "CodePress\\": "app/",
             "CodePress\\CodeCategory\\": "packages/codecategories/src/CodeCategory",
-            "CodePress\\CodeTag\\": "packages/codetags/src/CodeTag"
+            "CodePress\\CodeTag\\": "packages/codetags/src/CodeTag",
+            "CodePress\\CodeDatabase\\": "packages/codedatabase/src/CodeDatabase"
         }
     },
     "autoload-dev": {

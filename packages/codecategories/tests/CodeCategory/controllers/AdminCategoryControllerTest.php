@@ -5,6 +5,7 @@ namespace CodePress\CodeCategory\Tests\Controllers;
 use CodePress\CodeCategory\Tests\AbstractTestCase;
 use CodePress\CodeCategory\Controllers\AdminCategoryController;
 use CodePress\CodeCategory\Controllers\Controller;
+use CodePress\CodeCategory\Repositories\CategoryRepository;
 use CodePress\CodeCategory\Models\Category;
 use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Http\Request;
@@ -15,22 +16,22 @@ class AdminCategoryControllerTest extends AbstractTestCase
 
     public function test_should_extend_from_controller()
     {
-        $category = m::mock(Category::class);
+        $repository = m::mock(CategoryRepository::class);
         $responseFactory = m::mock(ResponseFactory::class);
-        $controller = new AdminCategoryController($responseFactory, $category);
+        $controller = new AdminCategoryController($responseFactory, $repository);
 
         $this->assertInstanceOf(Controller::class, $controller);
     }
 
     public function test_controller_should_run_index_method_and_return_correct_arguments()
     {
-        $category = m::mock(Category::class);
+        $repository = m::mock(CategoryRepository::class);
         $responseFactory = m::mock(ResponseFactory::class);
-        $controller = new AdminCategoryController($responseFactory, $category);
+        $controller = new AdminCategoryController($responseFactory, $repository);
         $html = m::mock();
 
         $categoryResult = ['cat1', 'cat2'];
-        $category->shouldReceive('all')
+        $repository->shouldReceive('all')
                 ->andReturn($categoryResult);
         $responseFactory->shouldReceive('view')
                 ->with('codecategory::index', ['categories' => $categoryResult])
@@ -41,22 +42,21 @@ class AdminCategoryControllerTest extends AbstractTestCase
 
     public function test_controller_should_run_show_method_and_return_correct_arguments()
     {
-        $category = m::mock(Category::class);
+        $repository = m::mock(CategoryRepository::class);
         $responseFactory = m::mock(ResponseFactory::class);
-        $controller = new AdminCategoryController($responseFactory, $category);
+        $controller = new AdminCategoryController($responseFactory, $repository);
         $html = m::mock();
 
-        $categoryResult = $category;
+        $categoryResult = $repository;
         $id = 1;
-        $category->shouldReceive('find')
+        $repository->shouldReceive('find')
                 ->with($id)
                 ->andReturn($categoryResult);
         $responseFactory->shouldReceive('view')
-                ->with('codecategory::show', ['category' => $category])
+                ->with('codecategory::show', ['category' => $repository])
                 ->andReturn($html);
 
         $this->assertEquals($controller->show($id), $html);
     }
 
-    
 }

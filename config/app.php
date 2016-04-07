@@ -138,8 +138,8 @@ return [
         CodePress\Providers\EventServiceProvider::class,
         CodePress\Providers\RouteServiceProvider::class,
         \Cviebrock\EloquentSluggable\SluggableServiceProvider::class,
-       \CodePress\CodeCategory\Providers\CodeCategoryServiceProvider::class,
-       \CodePress\CodeTag\Providers\CodeTagServiceProvider::class,
+        \CodePress\CodeCategory\Providers\CodeCategoryServiceProvider::class,
+        \CodePress\CodeTag\Providers\CodeTagServiceProvider::class,
         \Collective\Html\HtmlServiceProvider::class,
     ],
     /*

@@ -89,7 +89,7 @@ class CategoryTest extends AbstractTestCase
 
     public function test_check_if_a_category_can_be_updated()
     {
-        $parentCategory = Category::create(['name' => 'Parent Test', 'active' => true]);
+        Category::create(['name' => 'Parent Test', 'active' => true]);
         $category = Category::find(1);
         $category->name = 'Category Test Update';
         $category->active = false;
@@ -102,11 +102,19 @@ class CategoryTest extends AbstractTestCase
 
     public function test_check_if_a_category_can_be_searched()
     {
-        $parentCategory = Category::create(['name' => 'Parent Test retrieved', 'active' => true]);
+        Category::create(['name' => 'Parent Test retrieved', 'active' => true]);
         $category = Category::where(['name' => 'Parent Test retrieved'])->get();
 
         $this->assertEquals($category[0] instanceof Category, true);
         $this->assertEquals('Parent Test retrieved', $category[0]->name);
+    }
+
+    public function test_check_if_category_is_slagable()
+    {
+        Category::create(['name' => 'Category Test slaugable', 'active' => true]);
+        $category = Category::where(['name' => 'Category Test slaugable'])->get();
+
+        $this->assertNotNull($category[0]->slug);
     }
 
 }
