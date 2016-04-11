@@ -2,7 +2,7 @@
 /node_modules
 /nbproject
 /public/storage
-/packages/codecategory/vendor
+/packages/codecategories/vendor
 /packages/codetags/vendor
 /packages/codedatabase/vendor
 /packages/codecategory/composer.lock

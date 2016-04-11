@@ -5,7 +5,7 @@ namespace CodePress\CodeDatabase\Tests;
 use CodePress\CodeDatabase\Tests\AbstractTestCase;
 use CodePress\CodeDatabase\Tests\Stub\Models\Category;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use CodePress\CodeDatabase\Repository\CategoryRepository;
+use CodePress\CodeDatabase\Tests\Stub\Repository\CategoryRepository;
 use Mockery as m;
 
 class CategoryRepositoryTest extends AbstractTestCase

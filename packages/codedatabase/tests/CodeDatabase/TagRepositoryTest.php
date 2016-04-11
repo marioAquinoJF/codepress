@@ -5,8 +5,9 @@ namespace CodePress\CodeDatabase\Tests;
 use CodePress\CodeDatabase\Tests\AbstractTestCase;
 use CodePress\CodeDatabase\Tests\Stub\Models\Tag;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use CodePress\CodeDatabase\Repository\TagRepository;
+use CodePress\CodeDatabase\Tests\Stub\Repository\TagRepository;
 use Mockery as m;
+
 
 class TagRepositoryTest extends AbstractTestCase
 {

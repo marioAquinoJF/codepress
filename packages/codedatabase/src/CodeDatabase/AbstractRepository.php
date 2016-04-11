@@ -3,8 +3,10 @@
 namespace CodePress\CodeDatabase;
 
 use CodePress\CodeDatabase\Contracts\RepositoryInterface;
+use CodePress\CodeDatabase\Contracts\CriteriaCollection;
+use CodePress\CodeDatabase\Contracts\CriteriaInterface;
 
-abstract class AbstractRepository implements RepositoryInterface
+abstract class AbstractRepository implements RepositoryInterface, CriteriaCollection
 {
 
     /**
@@ -58,7 +60,27 @@ abstract class AbstractRepository implements RepositoryInterface
 
     public function findBy($field, $value, $columns = array('*'))
     {
-        return $this->model->where($field, '=' , $value)->get($columns);
+        return $this->model->where($field, '=', $value)->get($columns);
+    }
+
+    public function addCriteria(CriteriaInterface $criteriaInterface)
+    {
+        
+    }
+
+    public function getCriteriaCollection()
+    {
+        
+    }
+
+    public function getByCriteria(CriteriaInterface $criteriaInterface)
+    {
+        
+    }
+
+    public function applyCriteria()
+    {
+        
     }
 
 }
