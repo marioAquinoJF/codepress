@@ -4,6 +4,7 @@ namespace CodePress\CodeCategory\Tests\Models;
 
 use CodePress\CodeCategory\Tests\AbstractTestCase;
 use CodePress\CodeCategory\Models\Category;
+use CodePress\CodePost\Models\Post;
 use Illuminate\Validation\Validator;
 use Mockery as m;
 
@@ -15,6 +16,14 @@ class CategoryTest extends AbstractTestCase
         parent::setUp();
         $this->migrate();
     }
+
+    /* public function test_a()
+      {
+      $c = Category::create(['name' => 'Category Test slaugable', 'active' => true]);
+      $p = Post::create(['title'=>'post Teste']);
+      $p->categories()->save($c);
+      dd(Category::all());
+      } */
 
     public function test_inject_validator_in_category_model()
     {
@@ -115,6 +124,28 @@ class CategoryTest extends AbstractTestCase
         $category = Category::where(['name' => 'Category Test slaugable'])->get();
 
         $this->assertNotNull($category[0]->slug);
+    }
+
+// integration
+    public function test_can_add_post_to_category()
+    {
+        $c = Category::create(['name' => 'Category Test', 'active' => true]);
+
+        $p1 = Post::create(['title' => 'post Teste 1', 'content' => 'Content 1']);
+        $p1->categories()->save($c);
+
+        $p2 = Post::create(['title' => 'post Teste 2', 'content' => 'Content 2']);
+        $p2->categories()->save($c);
+
+        $this->assertCount(1, Category::all());
+        $this->assertEquals('Category Test', $p1->categories()->first()->name);
+        $this->assertEquals('Category Test', $p2->categories()->first()->name);
+
+        $posts = Category::find(1)->posts;
+        // dd($posts);
+        $this->assertCount(2, $posts);
+        $this->assertEquals('post Teste 1', $posts[0]->title);
+        $this->assertEquals('post Teste 2', $posts[1]->title);
     }
 
 }

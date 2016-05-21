@@ -1,0 +1,3 @@
+[2016-05-21 00:12:54] testing.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Class '\CodePress\CodePosts\Models\Post' not found' in C:\xampp\htdocs\CodePress52\packages\codeposts\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:988
+Stack trace:
+#0 {main}  

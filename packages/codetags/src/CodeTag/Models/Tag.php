@@ -42,4 +42,9 @@ class Tag extends Model
         return true;
     }
 
+    public function posts()
+    {
+        return $this->morphedByMany('CodePress\CodePost\Models\Post', 'taggable', 'code_taggables');
+    }
+
 }

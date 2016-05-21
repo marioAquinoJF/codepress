@@ -4,6 +4,7 @@ namespace CodePress\CodeTag\Tests\Models;
 
 use CodePress\CodeTag\Tests\AbstractTestCase;
 use CodePress\CodeTag\Models\Tag;
+use CodePress\CodePost\Models\Post;
 use Illuminate\Validation\Validator;
 use Mockery as m;
 
@@ -95,6 +96,28 @@ class TagTest extends AbstractTestCase
 
         $this->assertEquals($tag[0] instanceof Tag, true);
         $this->assertEquals('Tag Test retrieved', $tag[0]->name);
+    }
+
+    //
+     public function test_can_add_post_to_tag()
+    {
+        $tag = Tag::create(['name' => 'Tag Test']);
+
+        $post1 = Post::create(['title' => 'post Teste 1', 'content' => 'Content 1']);
+        $post1->tags()->save($tag);
+
+        $post2 = Post::create(['title' => 'post Teste 2', 'content' => 'Content 2']);
+        $post2->tags()->save($tag);
+
+        $this->assertCount(1, Tag::all());
+        $this->assertEquals('Tag Test', $post1->tags()->first()->name);
+        $this->assertEquals('Tag Test', $post2->tags()->first()->name);
+
+        $posts = Tag::find(1)->posts;
+        // dd($posts);
+        $this->assertCount(2, $posts);
+        $this->assertEquals('post Teste 1', $posts[0]->title);
+        $this->assertEquals('post Teste 2', $posts[1]->title);
     }
 
 }

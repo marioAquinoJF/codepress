@@ -16,7 +16,7 @@ class CodeCategoryServiceProvider extends ServiceProvider
 
     public function register()
     {
-        
+        $this->app->bind(\CodePress\CodeCategory\Repositories\CategoryRepositoryInterface::class, \CodePress\CodeCategory\Repositories\CategoryRepositoryEloquent::class);
     }
 
 }

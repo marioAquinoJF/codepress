@@ -6,6 +6,8 @@ use CodePress\CodeDatabase\AbstractRepository;
 use CodePress\CodeDatabase\Contracts\RepositoryInterface;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use CodePress\CodeDatabase\Tests\Stub\Models\Category;
+use CodePress\CodeDatabase\Tests\Stub\Models\Tag;
+
 use Mockery as m;
 
 class AbstractRepositoryTest extends AbstractTestCase
@@ -15,10 +17,11 @@ class AbstractRepositoryTest extends AbstractTestCase
     {
         parent::setUp();
         $this->migrate();
-        Tag::create([
-            'name' => 'Tag category'
+        Category::create([
+            'name' => 'category',
+            'description' => 'Description'
         ]);
-        echo Tag::all()->first()->name;
+        Category::all()->first()->name;
     }
 
     public function test_if_implements_repository_interface()

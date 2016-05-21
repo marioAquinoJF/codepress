@@ -5,7 +5,7 @@ namespace CodePress\CodeCategory\Tests\Controllers;
 use CodePress\CodeCategory\Tests\AbstractTestCase;
 use CodePress\CodeCategory\Controllers\AdminCategoryController;
 use CodePress\CodeCategory\Controllers\Controller;
-use CodePress\CodeCategory\Repositories\CategoryRepository;
+use CodePress\CodeCategory\Repositories\CategoryRepositoryInterface;
 use CodePress\CodeCategory\Models\Category;
 use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Http\Request;
@@ -16,7 +16,7 @@ class AdminCategoryControllerTest extends AbstractTestCase
 
     public function test_should_extend_from_controller()
     {
-        $repository = m::mock(CategoryRepository::class);
+        $repository = m::mock(CategoryRepositoryInterface::class);
         $responseFactory = m::mock(ResponseFactory::class);
         $controller = new AdminCategoryController($responseFactory, $repository);
 
@@ -25,7 +25,7 @@ class AdminCategoryControllerTest extends AbstractTestCase
 
     public function test_controller_should_run_index_method_and_return_correct_arguments()
     {
-        $repository = m::mock(CategoryRepository::class);
+        $repository = m::mock(CategoryRepositoryInterface::class);
         $responseFactory = m::mock(ResponseFactory::class);
         $controller = new AdminCategoryController($responseFactory, $repository);
         $html = m::mock();
@@ -42,7 +42,7 @@ class AdminCategoryControllerTest extends AbstractTestCase
 
     public function test_controller_should_run_show_method_and_return_correct_arguments()
     {
-        $repository = m::mock(CategoryRepository::class);
+        $repository = m::mock(CategoryRepositoryInterface::class);
         $responseFactory = m::mock(ResponseFactory::class);
         $controller = new AdminCategoryController($responseFactory, $repository);
         $html = m::mock();

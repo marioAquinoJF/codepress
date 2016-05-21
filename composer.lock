@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "dc0a047ee2f6f189db9eb6272795e064",
-    "content-hash": "5d209bf6c4766ae6112da75cd07d14de",
+    "hash": "996eaafdb38f46973c884d0ed5b8635a",
+    "content-hash": "7fd487f6655b995d1779bc6fdf46dc59",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -683,6 +683,61 @@
                 "storage"
             ],
             "time": "2016-03-14 21:54:11"
+        },
+        {
+            "name": "marioaquinojf/code-category",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/marioAquinoJF/codepress-codedatabase.git",
+                "reference": "58630ed7c6174ac1fbc9a52a32696b88fffb4c41"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/marioAquinoJF/codepress-codedatabase/zipball/58630ed7c6174ac1fbc9a52a32696b88fffb4c41",
+                "reference": "58630ed7c6174ac1fbc9a52a32696b88fffb4c41",
+                "shasum": ""
+            },
+            "require": {
+                "cviebrock/eloquent-sluggable": "^3.1"
+            },
+            "require-dev": {
+                "mockery/mockery": "~0.9.2",
+                "orchestra/testbench": "~3.0",
+                "phpunit/phpunit": "~5.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "CodePress\\CodeDatabase\\": "src/CodeDatabase/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Wesley Willians",
+                    "email": "wesleywillians@gmail.com"
+                },
+                {
+                    "name": "Luiz Carlos",
+                    "email": "argentinaluiz@gmail.com"
+                },
+                {
+                    "name": "Mário Henrique",
+                    "email": "marioaquino31@hotmail.com"
+                }
+            ],
+            "description": "Code.education repository pattern library based on laravel",
+            "homepage": "http://www.schoolofnet.com",
+            "keywords": [
+                "criteria",
+                "laravel",
+                "repository"
+            ],
+            "time": "2016-04-22 19:59:55"
         },
         {
             "name": "monolog/monolog",
@@ -3290,8 +3345,10 @@
         }
     ],
     "aliases": [],
-    "minimum-stability": "stable",
-    "stability-flags": [],
+    "minimum-stability": "dev",
+    "stability-flags": {
+        "marioaquinojf/code-category": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

@@ -15,6 +15,13 @@ abstract class AbstractRepository implements RepositoryInterface, CriteriaCollec
      */
     protected $model;
 
+    /**
+     * 
+     * @var CodePress\CodeDatabase\Contracts\CriteriaCollection $criteriaCollection
+     */
+    protected $criteriaCollection = [];
+    protected $isIgnoredCriteria = false;
+
     public function __construct()
     {
         $this->makeModel();
@@ -31,6 +38,7 @@ abstract class AbstractRepository implements RepositoryInterface, CriteriaCollec
 
     public function all($columns = array('*'))
     {
+        $this->applyCriteria();
         return $this->model->get($columns);
     }
 
@@ -54,33 +62,53 @@ abstract class AbstractRepository implements RepositoryInterface, CriteriaCollec
 
     public function find($id, $columns = array('*'))
     {
-        $model = $this->model->findOrFail($id, $columns);
-        return $model;
+        $this->applyCriteria();
+        return $this->model->findOrFail($id, $columns);
     }
 
     public function findBy($field, $value, $columns = array('*'))
     {
+        $this->applyCriteria();
         return $this->model->where($field, '=', $value)->get($columns);
     }
 
-    public function addCriteria(CriteriaInterface $criteriaInterface)
+    public function addCriteria(CriteriaInterface $criteria)
     {
-        
+        $this->criteriaCollection[] = $criteria;
+        return $this;
     }
 
     public function getCriteriaCollection()
     {
-        
+        return $this->criteriaCollection;
     }
 
-    public function getByCriteria(CriteriaInterface $criteriaInterface)
+    public function getByCriteria(CriteriaInterface $criteria)
     {
-        
+        $this->model = $criteria->apply($this->model, $this);
+        return $this;
     }
 
     public function applyCriteria()
     {
-        
+        if (!$this->isIgnoredCriteria):
+            foreach ($this->getCriteriaCollection() as $criteria) {
+                $this->model = $criteria->apply($this->model, $this);
+            }
+        endif;
+        return $this;
+    }
+
+    public function ignoreCriteria($isIgnored = true)
+    {
+        $this->isIgnoredCriteria = $isIgnored;
+        return $this;
+    }
+    public function clearCriteria()
+    {
+        $this->criteriaCollection = [];
+        $this->makeModel();
+        return $this;
     }
 
 }

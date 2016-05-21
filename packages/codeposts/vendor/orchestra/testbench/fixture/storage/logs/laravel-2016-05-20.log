@@ -1,0 +1,9 @@
+[2016-05-20 23:49:30] testing.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Class 'CodePress\CodeTag\Models\Tag' not found' in C:\xampp\htdocs\CodePress52\packages\codeposts\tests\CodePost\Models\PostTest.php:131
+Stack trace:
+#0 {main}  
+[2016-05-20 23:50:27] testing.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Class 'CodePress\CodeTag\Models\Tag' not found' in C:\xampp\htdocs\CodePress52\packages\codeposts\tests\CodePost\Models\PostTest.php:131
+Stack trace:
+#0 {main}  
+[2016-05-20 23:58:41] testing.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Cannot use object of type Illuminate\Database\Eloquent\Builder as array' in C:\xampp\htdocs\CodePress52\packages\codeposts\tests\CodePost\Models\PostTest.php:139
+Stack trace:
+#0 {main}  
