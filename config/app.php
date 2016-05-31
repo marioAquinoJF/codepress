@@ -35,7 +35,7 @@ return [
       | your application so that it is used when running Artisan tasks.
       |
      */
-    'url' => 'http://localhost',
+    'url' => 'http://codepress',
     /*
       |--------------------------------------------------------------------------
       | Application Timezone
@@ -138,9 +138,11 @@ return [
         CodePress\Providers\EventServiceProvider::class,
         CodePress\Providers\RouteServiceProvider::class,
         \Cviebrock\EloquentSluggable\SluggableServiceProvider::class,
+        \Collective\Html\HtmlServiceProvider::class,
+        /* CodePress */
         \CodePress\CodeCategory\Providers\CodeCategoryServiceProvider::class,
         \CodePress\CodeTag\Providers\CodeTagServiceProvider::class,
-        \Collective\Html\HtmlServiceProvider::class,
+        \CodePress\CodePost\Providers\CodePostServiceProvider::class,
     ],
     /*
       |--------------------------------------------------------------------------

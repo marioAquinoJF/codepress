@@ -1,5 +1,11 @@
 {
     "name": "codepress/code-post",
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/codeedu/laravel-tinymce.git"
+        }
+    ],
     "riquire": {
         "php": ">=5.5.9",
         "illuminate/contracts": "~5.2",
@@ -8,7 +14,7 @@
         "illuminate/database": "~5.2",
         "illuminate/validation": "~5.2",
         "cviebrock/eloquent-sluggable": "^3.0",
-        "codepress/code-database":"0.0.1"
+        "codepress/code-database": "0.0.1"
     },
     "require-dev": {
         "phpunit/phpunit": "~5.0",
@@ -22,6 +28,8 @@
     },
     "require": {
         "cviebrock/eloquent-sluggable": "^3.1",
-        "codepress/code-database": "^0.0.1"
+        "codepress/code-database": "^0.0.1",
+        "symfony/finder": "^3.0",
+        "codeedu/laravel-tinymce": "dev-master"
     }
 }

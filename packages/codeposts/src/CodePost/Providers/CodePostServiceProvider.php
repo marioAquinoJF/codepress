@@ -17,6 +17,8 @@ class CodePostServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->bind(\CodePress\CodePost\Repositories\PostRepositoryInterface::class, \CodePress\CodePost\Repositories\PostRepositoryEloquent::class);
+        $this->app->bind(\CodePress\CodePost\Repositories\CommentRepositoryInterface::class, \CodePress\CodePost\Repositories\CommentRepositoryEloquent::class);
+        $this->app->register(\Ktquez\Tinymce\TinymceServiceProvider::class);
     }
 
 }

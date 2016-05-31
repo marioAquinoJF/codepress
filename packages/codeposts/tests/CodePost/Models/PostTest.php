@@ -162,62 +162,17 @@ class PostTest extends AbstractTestCase
         $this->assertEquals('Post Teste Category', $posts[0]->title);
     }
 
+    public function test_can_add_comments()
+    {
+    
+        $post = Post::create(['title' => 'Post Teste Category', 'content' => 'Content 1']);
+        $post->comments()->create(['content'=>'conteúdo 01']);
+        $post->comments()->create(['content'=>'conteúdo 02']);
+
+        $comments = Post::find(1)->comments;
+        $this->assertCount(2, $comments);
+        $this->assertEquals('conteúdo 01', $comments[0]->content);
+        $this->assertEquals('conteúdo 02', $comments[1]->content);
+    }
+
 }
-
-/*
- * testes:
- * - Modelo:
- *  -> persistence
- *  -> validation
- *  -> integration
- */
-
-/*
- *
- *        
-  public function test_check_if_a_post_can_be_updated()
-    {
-        Post::create(['title' => 'Post Test Update', 'content' => 'Content Post Test Update']);
-        $post = Post::find(1);
-        $post->title = 'Post Test Update';
-        $post->content = 'Content Post Test Update';
-        $post->save();
-
-        $post = Post::find(1);
-        $this->assertEquals('Post Test Update', $post->title);
-        $this->assertEquals('Content Post Test Update', $post->content);
-    }
-
-    public function test_check_if_a_post_can_be_searched()
-    {
-        Post::create(['title' => 'Parent Test retrieved', 'content' => 'Content Post']);
-        $post = Post::where(['title' => 'Parent Test retrieved'])->get();
-
-        $this->assertEquals($post[0] instanceof Post, true);
-        $this->assertEquals('Parent Test retrieved', $post[0]->title);
-    }
-
-    public function test_check_if_post_is_slugable()
-    {
-        Post::create(['title' => 'Post Test slaugable', 'content' => 'Content Post']);
-        $post = Post::where(['title' => 'Post Test slaugable'])->get();
-
-        $this->assertNotNull($post[0]->slug);
-    }
-  $validator = m::mock(Validator::class);
-        $messageBag = m::mock('Illuminate\Suport\MessageBag');
-        $validator->shouldReceive('setRules')
-                ->with([
-                    'title' => 'required|max:255',
-                    'content' => 'required'
-                    ]);
-        $validator->shouldReceive('setData')
-                ->with([
-                    'title' => 'Post Test',
-                    'content' => 'Content Post Test'
-                    ]);
-        $validator->shouldReceive('fails')
-                ->andReturn(true);
-        $validator->shouldReceive('errors')
-                ->andReturn($messageBag);
- */

@@ -25,3 +25,15 @@ $factory->define(CodePress\CodeCategory\Models\Category::class, function (Faker\
         'active' => true
     ];
 });
+$factory->define(CodePress\CodePost\Models\Post::class, function (Faker\Generator $faker) {
+    return [
+        'title' => $faker->title,
+        'content' => $faker->paragraph
+    ];
+});
+
+$factory->define(CodePress\CodePost\Models\Comment::class, function (Faker\Generator $faker) {
+    return [
+        'content' => $faker->paragraph
+    ];
+});

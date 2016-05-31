@@ -12,6 +12,8 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
       //  $this->call(UserTableSeeder::class);
-      factory(CodePress\CodeCategory\Models\Category::class,5)->create();
+   //   factory(CodePress\CodeCategory\Models\Category::class,5)->create();
+        $this->call(CategoryTableSeeder::class);
+        $this->call(PostTableSeeder::class);
     }
 }

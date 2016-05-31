@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Validation\Validator;
 use Cviebrock\EloquentSluggable\SluggableTrait;
 use Cviebrock\EloquentSluggable\SluggableInterface;
+use CodePress\CodeCategory\Models\Category;
+use CodePress\CodeTag\Models\Tag;
 
 class Post extends Model implements SluggableInterface
 {
@@ -53,12 +55,17 @@ class Post extends Model implements SluggableInterface
 
     public function categories()
     {
-        return $this->morphToMany('\CodePress\CodeCategory\Models\Category', 'categorizable', 'code_categorizables');
+        return $this->morphToMany(Category::class, 'categorizable', 'code_categorizables');
     }
 
     public function tags()
     {
-        return $this->morphToMany('\CodePress\CodeTag\Models\Tag', 'taggable', 'code_taggables');
+        return $this->morphToMany(Tag::class, 'taggable', 'code_taggables');
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
     }
 
 }

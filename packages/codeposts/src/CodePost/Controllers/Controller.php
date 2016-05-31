@@ -1,6 +1,6 @@
 <?php
 
-namespace CodePress\CodeCategory\Controllers;
+namespace CodePress\CodePost\Controllers;
 
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;

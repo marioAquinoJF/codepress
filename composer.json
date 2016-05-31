@@ -1,15 +1,25 @@
 {
     "name": "laravel/laravel",
     "description": "The Laravel Framework.",
-    "keywords": ["framework", "laravel"],
+    "keywords": [
+        "framework",
+        "laravel"
+    ],
     "license": "MIT",
     "type": "project",
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/codeedu/laravel-tinymce.git"
+        }
+    ],
     "require": {
         "php": ">=5.5.9",
         "laravel/framework": "5.2.*",
         "cviebrock/eloquent-sluggable": "^3.1",
         "laravelcollective/html": "5.2.*",
-        "marioaquinojf/code-category": "dev-master"
+        "marioaquinojf/code-category": "dev-master",
+        "codeedu/laravel-tinymce": "dev-master"
     },
     "minimum-stability": "dev",
     "require-dev": {
@@ -28,7 +38,8 @@
             "CodePress\\": "app/",
             "CodePress\\CodeCategory\\": "packages/codecategories/src/CodeCategory",
             "CodePress\\CodeTag\\": "packages/codetags/src/CodeTag",
-            "CodePress\\CodeDatabase\\": "packages/codedatabase/src/CodeDatabase"
+            "CodePress\\CodeDatabase\\": "packages/codedatabase/src/CodeDatabase",
+            "CodePress\\CodePost\\": "packages/codeposts/src/CodePost"
         }
     },
     "autoload-dev": {
