@@ -18,12 +18,6 @@ class AdminCommentsController extends Controller
         $this->repository = $repository;
     }
 
-    public function index()
-    {
-        $comments = $this->repository->all();
-        return $this->responseFactory->view('codecomment::index', compact('comments'));
-    }
-
     public function store(Request $request)
     {
         $data = array_key_exists('active', $request->all()) ? $request->all() : array_merge($request->all(), ['active' => 'off']);

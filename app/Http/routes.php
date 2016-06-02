@@ -10,7 +10,7 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-
+use CodePress\CodeUser\Facade\Route as CodeRoute;
 Route::get('/', function () {
     return view('welcome');
 });
@@ -31,7 +31,10 @@ Route::group(['middleware' => ['web']], function () {
 });
 
 Route::group(['middleware' => 'web'], function () {
-    Route::auth();
+    CodeRoute::auth();
+    //$router = new CodePress\CodeUser\Routing\Router();
+//$router->auth();   
+// Route::auth();
 
     Route::get('/home', 'HomeController@index');
 });

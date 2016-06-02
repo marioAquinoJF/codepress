@@ -6,6 +6,8 @@
 /packages/codetags/vendor
 /packages/codedatabase/vendor
 /packages/codeposts/vendor
+/packages/codeuser/vendor
+/packages/codeuser/composer.lock
 /packages/codecategory/composer.lock
 /packages/codetags/composer.lock
 /packages/codedatabase/composer.lock

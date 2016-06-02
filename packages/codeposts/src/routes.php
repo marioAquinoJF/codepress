@@ -22,8 +22,7 @@ Route::group(['prefix' => 'admin/post',
     'middleware' => ['web']], function() {
     // Comments
 
-    Route::post('{id}/comment', ['uses' => 'AdminCommentController@store', 'as' => 'store']);
-    Route::get('{id}/comments', ['uses' => 'AdminCommentController@index', 'as' => 'index']);
-    Route::put('{id}/comment/{comment}', ['uses' => 'AdminCommentController@update', 'as' => 'update']);
-    Route::delete('{id}/comment/{comment}', ['uses' => 'AdminCommentController@destroy', 'as' => 'delete']);
+    Route::post('{id}/comment', ['uses' => 'AdminCommentsController@store', 'as' => 'store']);
+    Route::put('{id}/comment/{comment}', ['uses' => 'AdminCommentsController@update', 'as' => 'update']);
+    Route::delete('{id}/comment/{comment}', ['uses' => 'AdminCommentsController@destroy', 'as' => 'delete']);
 });

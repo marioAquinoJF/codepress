@@ -162,12 +162,59 @@ class PostTest extends AbstractTestCase
         $this->assertEquals('Post Teste Category', $posts[0]->title);
     }
 
+    public function test_can_soft_delete()
+    {
+        $post = Post::create(['title' => 'Post Teste Category', 'content' => 'Content 1']);
+        $post->delete();
+        $this->assertEquals(true, $post->trashed());
+        $this->assertCount(0, Post::all());
+    }
+
+    public function test_can_get_rows_deleted()
+    {
+        $post = Post::create(['title' => 'Post Test', 'content' => 'Content 1']);
+        Post::create(['title' => 'Post Test 02', 'content' => 'Content 2']);
+        $post->delete();
+        $posts = Post::onlyTrashed()->get();
+        $this->assertCount(1, $posts);
+        $this->assertEquals(1, $posts[0]->id);
+        $this->assertEquals("Post Test", $posts[0]->title);
+    }
+
+    public function test_can_get_rows_deleted_and_actives()
+    {
+        $post = Post::create(['title' => 'Post Test', 'content' => 'Content 1']);
+        Post::create(['title' => 'Post Test 02', 'content' => 'Content 2']);
+        $post->delete();
+        $posts = Post::withTrashed()->get();
+        $this->assertCount(2, $posts);
+        $this->assertEquals(1, $posts[0]->id);
+        $this->assertEquals("Post Test", $posts[0]->title);
+    }
+
+    public function test_can_force_delete()
+    {
+        $post = Post::create(['title' => 'Post Test', 'content' => 'Content 1']);
+        $post->forceDelete();
+        $posts = Post::withTrashed()->get();
+        $this->assertCount(0, $posts);        
+    }
+    public function test_can_restore_rows_deleted()
+    {
+        $post = Post::create(['title' => 'Post Test', 'content' => 'Content 1']);
+        $post->delete();
+        $post->restore();
+        $posts = Post::all();
+        $this->assertEquals(1, $posts[0]->id); 
+        $this->assertEquals("Post Test", $posts[0]->title);
+    }
+
     public function test_can_add_comments()
     {
-    
+
         $post = Post::create(['title' => 'Post Teste Category', 'content' => 'Content 1']);
-        $post->comments()->create(['content'=>'conteúdo 01']);
-        $post->comments()->create(['content'=>'conteúdo 02']);
+        $post->comments()->create(['content' => 'conteúdo 01']);
+        $post->comments()->create(['content' => 'conteúdo 02']);
 
         $comments = Post::find(1)->comments;
         $this->assertCount(2, $comments);

@@ -4,6 +4,7 @@ namespace CodePress\CodePost\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Validation\Validator;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Cviebrock\EloquentSluggable\SluggableTrait;
 use Cviebrock\EloquentSluggable\SluggableInterface;
 use CodePress\CodeCategory\Models\Category;
@@ -12,10 +13,12 @@ use CodePress\CodeTag\Models\Tag;
 class Post extends Model implements SluggableInterface
 {
 
-    use SluggableTrait;
+    use SluggableTrait,
+        SoftDeletes;
 
     private $validator;
     protected $table = "code_posts";
+    protected $dates = ['deleted_at'];
     protected $sluggable = [
         'build_from' => 'title',
         'save_to' => 'slug',
