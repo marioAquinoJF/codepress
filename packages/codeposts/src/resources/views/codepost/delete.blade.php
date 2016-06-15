@@ -7,14 +7,14 @@
                 <div class="panel-heading">Delete Category</div>
                 <div class="panel-body">
                     <ul>
-                        <li><strong>Name:</strong> {{$category->name}}</li>
-                        <li><strong>Active:</strong> {{$category->active}}</li>
+                        <li><strong>ID:</strong> {{$post->id}}</li>
+                        <li><strong>Title:</strong> {{$post->title}}</li>
                     </ul>
 
                 </div>
                 <div class="panel-footer">
                     <div class="col-md-offset-10">
-                    {!! Form::open(['method'=>'delete','route'=>['admin.categories.delete',$category->id]]) !!}
+                    {!! Form::open(['method'=>'delete','route'=>['admin.posts.delete',$post->id]]) !!}
                     {!! Form::submit('Submit', ['class'=>'btn btn-primary btn-danger']) !!}
                     {!! Form::close() !!}
                     </div>

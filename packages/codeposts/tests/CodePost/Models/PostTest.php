@@ -144,25 +144,8 @@ class PostTest extends AbstractTestCase
         $this->assertEquals('Post Teste Tag', $posts[0]->title);
     }
 
-    public function test_if_create_categories_with_post()
-    {
-        $category1 = Category::create(['name' => 'Category Test 1']);
-        $category2 = Category::create(['name' => 'Category Test 2']);
 
-        $post = Post::create(['title' => 'Post Teste Category', 'content' => 'Content 1']);
-        $post->categories()->save($category1);
-        $post->categories()->save($category2);
-
-        $this->assertCount(2, $post->categories);
-        $this->assertEquals('Category Test 1', $post->categories[0]->name);
-        $this->assertEquals('Category Test 2', $post->categories[1]->name);
-
-        $posts = Category::find(1)->posts;
-        $this->assertCount(1, $posts);
-        $this->assertEquals('Post Teste Category', $posts[0]->title);
-    }
-
-    public function test_can_soft_delete()
+    public function test_can_be_soft_deleted()
     {
         $post = Post::create(['title' => 'Post Teste Category', 'content' => 'Content 1']);
         $post->delete();
@@ -197,22 +180,23 @@ class PostTest extends AbstractTestCase
         $post = Post::create(['title' => 'Post Test', 'content' => 'Content 1']);
         $post->forceDelete();
         $posts = Post::withTrashed()->get();
-        $this->assertCount(0, $posts);        
+        $this->assertCount(0, $posts);
     }
+
     public function test_can_restore_rows_deleted()
     {
         $post = Post::create(['title' => 'Post Test', 'content' => 'Content 1']);
         $post->delete();
         $post->restore();
         $posts = Post::all();
-        $this->assertEquals(1, $posts[0]->id); 
+        $this->assertEquals(1, $posts[0]->id);
         $this->assertEquals("Post Test", $posts[0]->title);
     }
 
     public function test_can_add_comments()
     {
 
-        $post = Post::create(['title' => 'Post Teste Category', 'content' => 'Content 1']);
+        $post = Post::create(['title' => 'Post Teste Comment', 'content' => 'Content 1']);
         $post->comments()->create(['content' => 'conteúdo 01']);
         $post->comments()->create(['content' => 'conteúdo 02']);
 

@@ -17,14 +17,6 @@ class CategoryTest extends AbstractTestCase
         $this->migrate();
     }
 
-    /* public function test_a()
-      {
-      $c = Category::create(['name' => 'Category Test slaugable', 'active' => true]);
-      $p = Post::create(['title'=>'post Teste']);
-      $p->categories()->save($c);
-      dd(Category::all());
-      } */
-
     public function test_inject_validator_in_category_model()
     {
         $category = new Category();
@@ -127,7 +119,7 @@ class CategoryTest extends AbstractTestCase
     }
 
 // integration
-    public function test_can_add_post_to_category()
+    public function test_can_add_category_to_category()
     {
         $c = Category::create(['name' => 'Category Test', 'active' => true]);
 
@@ -142,10 +134,50 @@ class CategoryTest extends AbstractTestCase
         $this->assertEquals('Category Test', $p2->categories()->first()->name);
 
         $posts = Category::find(1)->posts;
-        // dd($posts);
+
         $this->assertCount(2, $posts);
         $this->assertEquals('post Teste 1', $posts[0]->title);
         $this->assertEquals('post Teste 2', $posts[1]->title);
+    }
+
+    public function test_can_get_rows_deleted()
+    {
+        $category = Category::create(['name' => 'Category Test delete', 'active' => true]);
+        Category::create(['name' => 'Category Test delete 2', 'active' => true]);
+        $category->delete();
+        $categories = Category::onlyTrashed()->get();
+        $this->assertCount(1, $categories);
+        $this->assertEquals(1, $categories[0]->id);
+        $this->assertEquals("Category Test delete", $categories[0]->name);
+    }
+
+    public function test_can_get_rows_deleted_and_actives()
+    {
+       $category = Category::create(['name' => 'Category Test delete', 'active' => true]);
+        Category::create(['name' => 'Category Test delete 2', 'active' => true]);
+        $category->delete();
+        $categories = Category::withTrashed()->get();
+        $this->assertCount(2, $categories);
+        $this->assertEquals(1, $categories[0]->id);
+        $this->assertEquals("Category Test delete", $categories[0]->name);
+    }
+
+    public function test_can_force_delete()
+    {
+        $category = Category::create(['name' => 'Category Test delete', 'active' => true]);
+        $category->forceDelete();
+        $categories = Category::withTrashed()->get();
+        $this->assertCount(0, $categories);
+    }
+
+    public function test_can_restore_rows_deleted()
+    {
+        $category = Category::create(['name' => 'Category Test delete', 'active' => true]);
+        $category->delete();
+        $category->restore();
+        $categories = Category::all();
+        $this->assertEquals(1, $categories[0]->id);
+        $this->assertEquals("Category Test delete", $categories[0]->name);
     }
 
 }

@@ -99,7 +99,7 @@ class TagTest extends AbstractTestCase
     }
 
     //
-     public function test_can_add_post_to_tag()
+    public function test_can_add_post_to_tag()
     {
         $tag = Tag::create(['name' => 'Tag Test']);
 
@@ -114,10 +114,59 @@ class TagTest extends AbstractTestCase
         $this->assertEquals('Tag Test', $post2->tags()->first()->name);
 
         $posts = Tag::find(1)->posts;
-        // dd($posts);
         $this->assertCount(2, $posts);
         $this->assertEquals('post Teste 1', $posts[0]->title);
         $this->assertEquals('post Teste 2', $posts[1]->title);
     }
+    
+//Soft Delete
+    public function test_can_be_soft_deleted()
+    {
+        $tag = Tag::create(['name' => 'Tag Test delete']);
+        $tag->delete();
+        $this->assertEquals(true, $tag->trashed());
+        $this->assertCount(0, Tag::all());
+    }
+
+    public function test_can_get_rows_deleted()
+    {
+        $tag = Tag::create(['name' => 'Tag Test delete']);
+        Tag::create(['name' => 'Tag Test delete 2']);
+        $tag->delete();
+        $tags = Tag::onlyTrashed()->get();
+        $this->assertCount(1, $tags);
+        $this->assertEquals(1, $tags[0]->id);
+        $this->assertEquals("Tag Test delete", $tags[0]->name);
+    }
+
+    public function test_can_get_rows_deleted_and_actives()
+    {
+       $tag = Tag::create(['name' => 'Tag Test delete']);
+        Tag::create(['name' => 'Tag Test delete 2']);
+        $tag->delete();
+        $tags = Tag::withTrashed()->get();
+        $this->assertCount(2, $tags);
+        $this->assertEquals(1, $tags[0]->id);
+        $this->assertEquals("Tag Test delete", $tags[0]->name);
+    }
+
+    public function test_can_force_delete()
+    {
+        $tag = Tag::create(['name' => 'Tag Test delete']);
+        $tag->forceDelete();
+        $tags = Tag::withTrashed()->get();
+        $this->assertCount(0, $tags);
+    }
+
+    public function test_can_restore_rows_deleted()
+    {
+        $tag = Tag::create(['name' => 'Tag Test delete']);
+        $tag->delete();
+        $tag->restore();
+        $tags = Tag::all();
+        $this->assertEquals(1, $tags[0]->id);
+        $this->assertEquals("Tag Test delete", $tags[0]->name);
+    }
+
 
 }

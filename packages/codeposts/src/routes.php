@@ -12,9 +12,8 @@ Route::group(['prefix' => 'admin/posts',
     Route::put('{id}/update', ['uses' => 'AdminPostsController@update', 'as' => 'update']);
     Route::get('{id}/show', ['uses' => 'AdminPostsController@show', 'as' => 'show']);
     Route::get('{id}/delete', ['uses' => 'AdminPostsController@delete', 'as' => 'delete']);
+    Route::get('deleted', ['uses' => 'AdminPostsController@deleted', 'as' => 'deleted']);
     Route::delete('{id}/delete', ['uses' => 'AdminPostsController@destroy', 'as' => 'delete']);
-
-    
 });
 Route::group(['prefix' => 'admin/post',
     'as' => 'admin.post.',

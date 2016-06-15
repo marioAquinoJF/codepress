@@ -62,6 +62,11 @@ class AdminPostsController extends Controller
         $post = $this->repository->find($id);
         return $this->responseFactory->view('codepost::delete', compact('post'));
     }
+    public function deleted()
+    {
+        $posts = $this->repository->deleted();
+        return $this->responseFactory->view('codepost::deleted', compact('posts'));
+    }
 
     public function destroy($id)
     {

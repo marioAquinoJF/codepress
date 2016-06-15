@@ -7,8 +7,6 @@
             <file>file:/C:/xampp/htdocs/CodePress52/tests/CodeCategory/Acceptance/AdminPostsTest.php</file>
             <file>file:/C:/xampp/htdocs/CodePress52/database/seeds/PostTableSeeder.php</file>
         </group>
-        <group name="school">
-            <file>file:/C:/xampp/htdocs/CodePress52/app/Http/routes.php</file>
-        </group>
+        <group name="school"/>
     </open-files>
 </project-private>

@@ -6,7 +6,7 @@ use CodePress\CodeTag\Repositories\TagRepository;
 use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Http\Request;
 
-class AdminTagController extends Controller
+class AdminTagsController extends Controller
 {
 
     private $repository;
@@ -26,14 +26,12 @@ class AdminTagController extends Controller
 
     public function create()
     {
-        $tags = $this->repository->all();
-        return $this->responseFactory->view('codetag::create', compact('tags'));
+        return $this->responseFactory->view('codetag::create');
     }
 
     public function store(Request $request)
     {
-        $data = array_key_exists('active', $request->all()) ? $request->all() : array_merge($request->all(), ['active' => 'off']);
-        $this->repository->create($data);
+        $this->repository->create($request->all());
         return redirect()->route('admin.tags.index');
     }
 

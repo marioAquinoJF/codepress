@@ -69,5 +69,26 @@ class AdminPostsTest extends \TestCase
                 ->see('Content Post 01 Alterado');
     }
 
-  
+    public function test_list_deleted_posts()
+    {
+
+        $post = Post::create(['title' => 'Post 01 Deleted', 'content' => "Content Post 01"]);
+        $post->delete();
+        $post = Post::create(['title' => 'Post 03 Deleted', 'content' => "Content Post 03"]);
+        $post->delete();
+        $post = Post::create(['title' => 'Post 04 Deleted', 'content' => "Content Post 04"]);
+        $post->delete();
+        $post = Post::create(['title' => 'Post 05 Deleted', 'content' => "Content Post 05"]);
+        $post->delete();
+        $this->visit("/admin/posts/deleted")
+                ->type('Post 01  Deleted', 'title')
+                ->type("Content Post 01", 'content')
+                ->type('Post 03  Deleted', 'title')
+                ->type("Content Post 03", 'content')
+                ->type('Post 04  Deleted', 'title')
+                ->type("Content Post 04", 'content')
+                ->type('Post 05  Deleted', 'title')
+                ->type("Content Post 05", 'content');
+    }
+
 }
