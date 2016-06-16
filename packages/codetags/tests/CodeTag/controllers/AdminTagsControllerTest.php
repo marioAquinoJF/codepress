@@ -3,21 +3,21 @@
 namespace CodePress\CodeTag\Tests\Controllers;
 
 use CodePress\CodeTag\Tests\AbstractTestCase;
-use CodePress\CodeTag\Controllers\AdminTagController;
+use CodePress\CodeTag\Controllers\AdminTagsController;
 use CodePress\CodeTag\Controllers\Controller;
 use CodePress\CodeTag\Repositories\TagRepository;
 use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Http\Request;
 use Mockery as m;
 
-class AdminTagControllerTest extends AbstractTestCase
+class AdminTagsControllerTest extends AbstractTestCase
 {
 
     public function test_should_extend_from_controller()
     {
         $repository = m::mock(TagRepository::class);
         $responseFactory = m::mock(ResponseFactory::class);
-        $controller = new AdminTagController($responseFactory, $repository);
+        $controller = new AdminTagsController($responseFactory, $repository);
 
         $this->assertInstanceOf(Controller::class, $controller);
     }
@@ -26,7 +26,7 @@ class AdminTagControllerTest extends AbstractTestCase
     {
         $repository = m::mock(TagRepository::class);
         $responseFactory = m::mock(ResponseFactory::class);
-        $controller = new AdminTagController($responseFactory, $repository);
+        $controller = new AdminTagsController($responseFactory, $repository);
         $html = m::mock();
 
         $tagResult = ['tag1', 'tag2'];
@@ -43,7 +43,7 @@ class AdminTagControllerTest extends AbstractTestCase
     {
         $repository = m::mock(TagRepository::class);
         $responseFactory = m::mock(ResponseFactory::class);
-        $controller = new AdminTagController($responseFactory, $repository);
+        $controller = new AdminTagsController($responseFactory, $repository);
         $html = m::mock();
 
         $tagResult = $repository;
